@@ -1,31 +1,14 @@
-arr = [100, 180, 260, 310, 40, 535, 695]
+arr = [4,1,2,1,2,3,5,3,5]
 
-profit = 0
-buy_price = 0
-sell_price = 0
-purchased_at = 0
-sold_in = 0
-holding = False
-for index from 0 to end of arr:
-    check if arr[index] and arr[index+1] is decreasing:
-        if holding is not false:
-            sell_price = arr[index]
-            sell at index
-            sold_in = index
-            holding = false
-            profit += sell_price - buy_price
-            
-    check if arr[index] and arr[index+1] is increase:
-        if true:
-            if holding is not true:
-                buy_price = arr[index]
-                buy at index
-                purchased_at = index
-                holding = true
+seen = {}
 
+for every index from 0 to len(arr) - 1:
+    if arr[index] is not in seen:
+        add arr[index] to seen with count 1
 
-            else:
-                holding = true
+    else:
+        change the arr[index] in seen and add 1 to count
 
-    
-
+for item,count in seen.items():
+    if count == 1:
+        return item
