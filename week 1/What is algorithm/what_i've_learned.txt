@@ -1,0 +1,384 @@
+Here is a clean note you can keep.
+
+Algorithms we solved
+#	Problem / Algorithm	Main idea	Complexity
+1	Binary Search	Repeatedly cut a sorted search range roughly in half until the target is found.	O(log n)
+2	Duplicate within K Distance	Store each value's most recent index in a dictionary and check the distance when it appears again.	O(n)
+3	Wave / Zig-Zag Array	Rearrange neighboring elements so they alternate ≤ and ≥.	O(n)
+4	Sum of All Subarrays	Generate every contiguous subarray and accumulate its sum.	O(n²)
+5	Stock Buy and Sell — Multiple Transactions	Buy before an increasing run and sell when the price starts decreasing.	O(n)
+6	Single Number / Non-Repeating Element	Count occurrences with a dictionary and find the element whose count is 1.	O(n)
+7	Missing Number	Track existing numbers and find the number from 1..n that isn't present.	O(n)
+8	Duplicate + Missing Number	Count every number; count 2 → duplicate, absent → missing.	O(n)
+9	Repeating Element from 1..n-1	Count occurrences and identify the number appearing twice.	O(n)
+10	Sorted Subsequence of Size 3	Find i < j < k where arr[i] < arr[j] < arr[k].	O(n)
+11	Maximum Subarray Sum — Kadane's Algorithm	Maintain a running sum; discard it when it becomes negative.	O(n)
+
+1. Binary Search 🔎
+
+You learned the important idea behind:
+
+O(log n)
+
+Instead of checking every element:
+
+100 → 99 → 98 → 97 → ...
+
+you repeatedly reduce the search space:
+
+1,000,000
+    ↓
+500,000
+    ↓
+250,000
+    ↓
+125,000
+    ↓
+...
+
+The important concept you learned was:
+
+When every step eliminates roughly half of the remaining possibilities, the algorithm is O(log n).
+
+You even tested your guessing algorithm with numbers up to around a billion and saw it find the answer in only a few dozen attempts.
+
+2. Duplicate Within K Distance
+
+Example:
+
+arr = [1, 2, 3, 4, 1]
+k = 4
+
+You need to determine whether the same value appears again within k positions.
+
+Your solution eventually became:
+
+seen[value] = last_position
+
+When the value appears again:
+
+distance = current_index - previous_index
+
+Then:
+
+if distance <= k:
+    duplicate exists
+Main lesson
+
+Dictionary / Hash Map lets you remember information about previously seen elements.
+
+3. Wave / Zig-Zag Array
+
+You worked on the condition:
+
+arr[i-1] <= arr[i] >= arr[i+1]
+
+then:
+
+arr[i-1] >= arr[i] <= arr[i+1]
+
+alternating throughout the array.
+
+You learned that you don't need to completely sort the array. You only need to fix the relationship between neighboring elements.
+
+Main lesson
+
+Sometimes an array problem only requires local relationships, not global sorting.
+
+4. Sum of All Subarrays
+
+For:
+
+[1, 2, 3]
+
+the subarrays are:
+
+[1]
+[1,2]
+[1,2,3]
+[2]
+[2,3]
+[3]
+
+You initially tried to understand how many subarrays exist and then wrote the nested-loop solution.
+
+Eventually you reached:
+
+current_sub_array_sum
+total_sum
+
+The important optimization was:
+
+Instead of repeatedly calculating:
+
+1 + 2
+1 + 2 + 3
+
+from scratch, maintain the current sum.
+
+Complexity
+O(n²)
+
+because there are roughly n² possible contiguous subarrays.
+
+5. Stock Buy & Sell 📈
+
+You worked through the idea of:
+
+buy → hold → sell
+
+For:
+
+[100, 180, 260, 310, 40, 535, 695]
+
+you discovered:
+
+100 → 310
+
+and then:
+
+40 → 695
+
+The important insight was:
+
+Buy when the price starts increasing and sell before it starts decreasing.
+
+This can be solved in:
+
+O(n)
+
+with one pass.
+
+6. Single Number
+
+Example:
+
+[4, 1, 2, 1, 2, 3, 5, 3, 5]
+
+Every number appears twice except:
+
+4
+
+Your first thought was essentially:
+
+count(arr[index]) == 1
+
+Then you improved it to a dictionary:
+
+seen[value] = count
+Main lesson
+
+When you need to know how many times values occur, a hash map is a natural tool.
+
+7. Missing Number
+
+Example:
+
+[8, 2, 4, 5, 3, 7, 1]
+
+Possible numbers:
+
+1 2 3 4 5 6 7 8
+
+The missing one is:
+
+6
+
+You created a dictionary containing the numbers that exist and then checked the expected range.
+
+Complexity
+O(n)
+Space
+O(n)
+8. Duplicate + Missing Number
+
+Example:
+
+[4, 3, 6, 2, 1, 1]
+
+Expected:
+
+1 2 3 4 5 6
+
+Actual:
+
+1 1 2 3 4 6
+
+Therefore:
+
+duplicate = 1
+missing = 5
+
+You learned that one dictionary containing counts is enough to discover both.
+
+9. Repeating Element
+
+Similar to the previous problem, but simpler:
+
+Every number from 1 to n-1 appears, except one number appears twice.
+
+Again you used:
+
+value → count
+
+and found:
+
+count == 2
+Main lesson
+
+You were beginning to recognize a pattern:
+
+Many array problems become easier when you first ask: "What information should I remember about each value?"
+
+That's a very important algorithmic habit.
+
+10. Sorted Subsequence of Size 3
+
+This one was more interesting.
+
+You needed:
+
+i < j < k
+
+and:
+
+arr[i] < arr[j] < arr[k]
+
+For:
+
+[12, 11, 10, 5, 6, 2, 30]
+
+the answer is:
+
+5, 6, 30
+
+You first tried the brute-force approach:
+
+O(n³)
+
+Then learned the O(n) idea:
+
+smaller[i]
+greater[i]
+
+For each possible middle element:
+
+        middle
+       /      \
+ smaller      greater
+  left         right
+
+If both exist:
+
+smaller < middle < greater
+
+you have your answer.
+
+Main lesson
+
+Store useful information from the left and right instead of checking every possible combination.
+
+11. Maximum Subarray Sum — Kadane's Algorithm
+
+This was probably the most important one you discovered yourself.
+
+Given:
+
+[2, 3, -8, 7, -1, 2, 3]
+
+the best subarray is:
+
+[7, -1, 2, 3]
+
+with:
+
+11
+
+You first created an O(n²) solution.
+
+Then we looked at the key observation:
+
+If current sum becomes negative,
+throw it away.
+
+You eventually wrote:
+
+current = 0
+
+for i in range(len(arr)):
+    current += arr[i]
+
+    if current < 0:
+        current = 0
+
+    if current > maximum:
+        maximum = current
+
+And you independently arrived at:
+
+O(n)
+
+That's a big step in your algorithm learning.
+
+🧠 The bigger picture
+
+More important than the individual problems is the progression you've been making:
+
+Brute force
+    ↓
+Understand why it works
+    ↓
+Calculate complexity
+    ↓
+Find unnecessary work
+    ↓
+Look for information you can remember
+    ↓
+Optimize
+
+You've repeatedly encountered these patterns:
+
+Pattern 1 — Hash Map
+value → information
+
+Used for:
+
+duplicate detection
+missing numbers
+frequency counting
+distance between duplicates
+Pattern 2 — Two pointers / boundaries
+
+Used in:
+
+Binary Search
+maintaining start / end
+
+The fundamental idea:
+
+search space
+[--------------------]
+          ↓
+       reduce
+[---------]
+Pattern 3 — Running state
+
+Used in:
+
+Maximum subarray
+Stock prices
+Subarray sums
+
+Instead of recalculating everything, remember something useful from the previous step.
+
+Pattern 4 — Brute force → optimization
+
+You've done this several times:
+
+O(n³)
+   ↓
+O(n²)
+   ↓
+O(n)
+
+That's exactly the habit I want you to develop as an aspiring software engineer.

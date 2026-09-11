@@ -1,0 +1,31 @@
+arr = [1, 3, 4, 0, 4]
+
+point = []
+
+def sum():
+    for i from 0 to end:
+        sum += arr[i]
+
+    return sum
+
+def find():
+
+
+    sum = self.sum()
+    if sum // 3 != 0:
+        return [-1,-1]
+
+    devide_3 = sum / 3
+    
+    for i from 0 to end:
+        currnet = arr[i]
+        c_sum += currnet
+
+        if c_sum == devide_3:
+            point.append(i)
+            c_sum = 0
+
+        else:
+            continue
+
+
