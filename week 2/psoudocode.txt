@@ -1,34 +1,24 @@
-def f(x):
-    retrun(x ** x - (10*x) - 20)
+this prblem wants to find a key in a sorted array that its cut and break in half of array that when we find the mid one of halfs is sorted
 
 
-def find_range():
-    last_num = 0
-    current_num = 1
-
-    if f(current_num) not positive:
-        last_num = current_num
-        current_num = current_num * 2
-
-    elif f(current_num) is positive:
-        return last_num , current_num
-
-
-def binary(low,high):
-    low,high = find_range()
+def binary(arr,key):
 
     while low <= high:
-        mid = low + (high - low) / 2
+        mid = low + (high - low) // 2
 
-        if (f(mid) > 0 and (mid == low or f(mid -1) <= 0)):
-            return mid
+        if arr[low] < arr[mid]:
+            if arr[low] == key:
+                return low
 
-        if (f(mid) <= 0):
-            return binary((mid +1),high)
+            else:
+                low = low + 1
+
+         
+    while mid <= high:
+        mid = mid +(high - mid) // 2
+
+        if arr[mid] == key:
+            return key
 
         else:
-            return binary(low,(mid -1))
-
-
-
-
+            mid = mid +1
