@@ -1,24 +1,12 @@
-this prblem wants to find a key in a sorted array that its cut and break in half of array that when we find the mid one of halfs is sorted
+selection sort 
+the way its work:
+
+start at index 0 from 0 till end find the smallest value and store it in 0 and move value 0 to index of the smallest
+the move to index 1 and search for the second smallest and swap it with index 1 
+
+move throw the array and sort from smallest to biggest 
 
 
-def binary(arr,key):
 
-    while low <= high:
-        mid = low + (high - low) // 2
+psoudocode:
 
-        if arr[low] < arr[mid]:
-            if arr[low] == key:
-                return low
-
-            else:
-                low = low + 1
-
-         
-    while mid <= high:
-        mid = mid +(high - mid) // 2
-
-        if arr[mid] == key:
-            return key
-
-        else:
-            mid = mid +1
