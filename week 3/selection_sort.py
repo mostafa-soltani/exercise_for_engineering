@@ -5,7 +5,7 @@ class selection_sort:
         for i in range(len(arr)):
 
             min_index = i
-            current = arr[i]
+
             for j in range(i+1,len(arr)):
 
                 if arr[j] < arr[min_index]:
@@ -14,7 +14,6 @@ class selection_sort:
             arr[i], arr[min_index] = arr[min_index], arr[i]
 
         return arr
-
 
 
 arr = [7,4,9,2,5,1]

@@ -1,0 +1,28 @@
+
+arr = [8,3,5,1,7,2]
+
+first find mid 
+
+mid = index 3 or 5
+
+now we have to arr [8,3,5] and [1,7,2]
+
+now the recursion 
+the left and right must be broken and be items
+
+now we have [8] , [3,5] and [1],[7,2]
+
+we also have arrays that have two item , must be broken to pieces 
+
+now we have [8] , [3] , [5] , [1] , [7] , [2] 
+
+now we sort 
+
+the left is [8] , [3] , [5] and right is [1] , [7] , [2] 
+
+now sort the left and right separatly
+
+now the left is [3,5,8] and right [1,2,7]
+
+
+the first is smaller => 1 > 3 => [1,3,5,8] , 1 < 2 so 3 > 2 => [1,2,3,5,8] , 1 < 7 so 2 < 7 so 3 < 7 so 5 < 7 so 8 > 7 => [1,2,3,5,7,8]
